@@ -1,3 +1,18 @@
+'''
+INIT ARCHIVE WITH KEYWORDS. Serve a creare un file csv iniziale facendo lo scraping da politifact.com. Questo csv poi può essre arricchito
+con il programma update_archive_with_keywords.py che aggiunge (in testa) tutta la roba più recente relativamente alle keywords con cui è
+stata effettuata la ricerca: se viene effettuata una ricerca senza keywords, si estraggono le notizie più recenti.
+
+Lo scraping è stato essenzialmente copiato da https://github.com/ChangyWen/PolitiFact-scraping?tab=readme-ov-file con qualche modifica.
+L'unica sostanziale serve a evitare cose strane nel file quando ci sono autori con nome+cognome di tre parole (es. Pico de Paperis).
+Quelli con 4 non sono stati trattati, sperando che non ce ne siamo a Paperopoli(e magari pure a Topolinia).
+
+NB: Author è il checker della notizia, non chi l'ha messa in giro per primo.
+
+PS. se si vuole tornare più indietro nel tempo, usare un n più grosso di 5 (alla linea 166)
+    se si vuole effettuare una ricerca senza keywords, lasciare la lista vuota (alla linea 167)
+
+'''
 # Import the dependencies
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -132,7 +147,7 @@ def scrape_website(page_number, keywords=None):
             keywords_list.append(None)
 
 
-    print(statements)
+    '''print(statements)
     print(authors)
     print(sources)
     print(dates)
@@ -146,14 +161,15 @@ def scrape_website(page_number, keywords=None):
     print(len(targets))
     print(len(keywords_list))
 
-
+'''
 # Loop through 'n-1' webpages to initialize the archive
-n = 5
-keywords = ["Ukraine"]  # Replace with actual keywords or leave empty for no keywords
-if keywords:
-    CSV_file = "archive_with_keywords.csv"
-else:
-    CSV_file = "archive.csv"
+n = 2
+keywords = ["Rome"]  # Replace with actual keywords or leave empty ([]) for no keywords
+CSV_file = "archive_with_keywords.csv"
+# if keywords:
+#     CSV_file = "archive_with_keywords.csv"
+# else:
+#     CSV_file = "archive.csv"
 for i in range(1, n):
     scrape_website(i, keywords)
 
@@ -165,6 +181,7 @@ data['source'] = sources
 data['date'] = dates
 data['target'] = targets
 data['keywords'] = keywords_list
+
 
 # Save the data set
 data.to_csv(CSV_file, index=False, sep=',')

@@ -1,3 +1,16 @@
+'''
+UPDATE ARCHIVE WITH KEYWORDS. Serve ad aggiornare un file csv preesistente facendo lo scraping da politifact.com e aggiungendo (in testa)
+tutta la roba più recente: inserendo una keyword, si estraggono le affermazioni più recenti ottenute come risultato della ricerca per
+quella specifica parola.
+
+Lo scraping è stato essenzialmente copiato da https://github.com/ChangyWen/PolitiFact-scraping?tab=readme-ov-file con qualche modifica.
+Le uniche sostanziale servono a fermare lo scraping e ul relativo inserimento quando si piomba sulla notizia più recente già presente
+nel file archive.csv, e ad evitare cose strane nel file quando ci sono autori con nome+cognome di tre parole (es. Pico de Paperis).
+Quelli con 4 non sono stati trattati, sperando che non ce ne siamo a Paperopoli(e magari pure a Topolinia).
+
+NB: Author è il checker della notizia, non chi l'ha messa in giro per primo.
+
+'''
 # Import the dependencies
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -135,17 +148,17 @@ def scrape_website(page_number, keywords=None):
             fact = i.find('div', attrs={'class': 'c-image'}).find('img').get('alt')
             targets.append(fact)
 
+
 # Definire le parole chiave e il file CSV
-keywords = ["Biden"]
+keywords = ["Rome"]
 CSV_file = "archive_with_keywords.csv"
 
 # Caricare l'archivio esistente
 df_archive = pd.read_csv(CSV_file)
-print("DF attuale: ", df_archive)
+#print("DF attuale: ", df_archive)
 
 # # Estrarre l'ultima dichiarazione dall'archivio
 # last_statement = df_archive['statement'].iloc[0]
-
 if keywords:
     # Estrarre l'ultima dichiarazione relativa alle keywords inserite dall'archivio
     # Filtra l'archivio per la keyword specificata
@@ -159,12 +172,16 @@ if keywords:
 else:
     last_statement = df_archive['statement'].iloc[0]
 
+
+
 print("LAST STATEMENT: ", last_statement)
 
 # Scraping della prima pagina
 #scrape_website(2, keywords)
 
-for i in range(1, 2):
+# Loop through 'n-1' webpages to update the archive
+n = 2
+for i in range(1, n):
     scrape_website(i, keywords)
 
 # Creare un nuovo DataFrame con i dati ottenuti
@@ -181,7 +198,7 @@ print("Nuovi dati: ", data)
 
 # Unire i nuovi dati con l'archivio esistente, aggiungendo i nuovi dati in cima
 df_archive = pd.concat([data, df_archive], ignore_index=True)
-print("DF ARCHIVE: ", df_archive)
+#print("DF ARCHIVE: ", df_archive)
 
 # Salvare l'archivio aggiornato nel file CSV
 df_archive.to_csv(CSV_file, index=False, sep=',')
