@@ -25,6 +25,9 @@ sources = []
 targets = []
 keywords_list = []
 
+'''
+Funzione per estrarre il valore della label a partire dall'immagine
+'''
 def extract_rating(image_url):
     # Controlla se l'URL contiene "meter-xxx"
     match = re.search(r'meter-([a-z-]+)', image_url)
@@ -39,7 +42,7 @@ def extract_rating(image_url):
     return "None"
 
 # Create a function to scrape the site
-def scrape_website(page_number, keywords=None):
+def scrape_website(page_number, keywords, last_statement):
     page_num = str(page_number)  # Convert the page number to a string
 
     stop = False
@@ -114,7 +117,12 @@ def scrape_website(page_number, keywords=None):
         # Loop through the div m-statement__quote to get the link
         for i in statement_quote:
             link2 = i.find_all('a')
-            count_statements += 1
+            if link2[0].text.strip() == last_statement:
+                # print(link2[0].text.strip())
+                # print('count =',count_statements)
+                stop = True
+                break
+            count_statements = count_statements + 1
             statements.append(link2[0].text.strip())
             keywords_list.append(None)
 
@@ -148,59 +156,77 @@ def scrape_website(page_number, keywords=None):
             fact = i.find('div', attrs={'class': 'c-image'}).find('img').get('alt')
             targets.append(fact)
 
+'''
+Funzione per estrarre l'ultimo statement relativo alla ricerca effettuata (con o senza keywords)
+'''
+def extract_last_statement(df_archive, keywords):
+    #Caso in cui viene effettuata una ricerca con keywords e il file csv di partenza non contiene record con keywords null
+    if keywords and not df_archive['keywords'].isnull().all():
+        # Estrarre l'ultima dichiarazione relativa alle keywords inserite dall'archivio
+        # Filtra l'archivio per la keyword specificata
+        filtered_archive = df_archive[df_archive['keywords'].str.contains(keywords[0], case=False, na=False)]
 
-# Definire le parole chiave e il file CSV
-keywords = ["Rome"]
+        # Estrai l'ultima dichiarazione dal DataFrame filtrato
+        if not filtered_archive.empty:
+            last_statement = filtered_archive['statement'].iloc[0]
+        else:
+            last_statement = None  # O qualche valore di default se non ci sono dichiarazioni corrispondenti
+    # Caso in cui viene effettuata una ricerca con keywords e il file csv di partenza contiene solo record con keywords null
+    elif keywords and df_archive['keywords'].isnull().all():
+        last_statement = None
+    # Caso in cui viene effettuata una ricerca senza keywords
+    elif not keywords:
+        #last_statement = df_archive['statement'].iloc[0]
+        # Controlla se ci sono record con la colonna 'keywords' nulla
+        filtered_archive = df_archive[df_archive['keywords'].isna()]
+
+        # Estrai l'ultima dichiarazione dal DataFrame filtrato
+        if not filtered_archive.empty:
+            last_statement = filtered_archive['statement'].iloc[0]
+        else:
+            last_statement = df_archive['statement'].iloc[0]  # Usare il valore più recente con .iloc[-1]
+    return last_statement
+
+'''
+Funzione per salvare i risultati della ricerca effettuata nel file csv specificato
+'''
+def results_to_CSV(n, keywords, CSV_file):
+    # Caricare l'archivio esistente
+    df_archive = pd.read_csv(CSV_file)
+
+    last_statement = extract_last_statement(df_archive, keywords)
+    print(f"LAST STATEMENT for {keywords}: {last_statement}")
+
+    # Loop through 'n-1' webpages to update the archive
+    for i in range(1, n):
+        scrape_website(i, keywords, last_statement)
+
+    # Creare un nuovo DataFrame con i dati ottenuti
+    data = pd.DataFrame({
+        'author': authors,
+        'statement': statements,
+        'source': sources,
+        'date': dates,
+        'target': targets,
+        'keywords': keywords_list
+    })
+
+    print("Nuovi dati: ", data)
+
+    # Unire i nuovi dati con l'archivio esistente, aggiungendo i nuovi dati in cima
+    df_archive = pd.concat([data, df_archive], ignore_index=True)
+    # print("DF ARCHIVE: ", df_archive)
+
+    # Salvare l'archivio aggiornato nel file CSV
+    df_archive.to_csv(CSV_file, index=False, sep=',')
+
+    print(f"\n Success: file {CSV_file} updated!\n\n")
+
+
+# Definire le parole chiave, il file CSV e il numero di pagine per estrarre i dati più recenti
+keywords = ["Trump"]
 CSV_file = "archive_with_keywords.csv"
+n = 3
 
-# Caricare l'archivio esistente
-df_archive = pd.read_csv(CSV_file)
-#print("DF attuale: ", df_archive)
+results_to_CSV(n, keywords, CSV_file)
 
-# # Estrarre l'ultima dichiarazione dall'archivio
-# last_statement = df_archive['statement'].iloc[0]
-if keywords:
-    # Estrarre l'ultima dichiarazione relativa alle keywords inserite dall'archivio
-    # Filtra l'archivio per la keyword specificata
-    filtered_archive = df_archive[df_archive['keywords'].str.contains(keywords[0], case=False, na=False)]
-
-    # Estrai l'ultima dichiarazione dal DataFrame filtrato
-    if not filtered_archive.empty:
-        last_statement = filtered_archive['statement'].iloc[0]
-    else:
-        last_statement = None  # O qualche valore di default se non ci sono dichiarazioni corrispondenti
-else:
-    last_statement = df_archive['statement'].iloc[0]
-
-
-
-print("LAST STATEMENT: ", last_statement)
-
-# Scraping della prima pagina
-#scrape_website(2, keywords)
-
-# Loop through 'n-1' webpages to update the archive
-n = 2
-for i in range(1, n):
-    scrape_website(i, keywords)
-
-# Creare un nuovo DataFrame con i dati ottenuti
-data = pd.DataFrame({
-    'author': authors,
-    'statement': statements,
-    'source': sources,
-    'date': dates,
-    'target': targets,
-    'keywords': keywords_list
-})
-
-print("Nuovi dati: ", data)
-
-# Unire i nuovi dati con l'archivio esistente, aggiungendo i nuovi dati in cima
-df_archive = pd.concat([data, df_archive], ignore_index=True)
-#print("DF ARCHIVE: ", df_archive)
-
-# Salvare l'archivio aggiornato nel file CSV
-df_archive.to_csv(CSV_file, index=False, sep=',')
-
-print(f"\n Success: file {CSV_file} updated!\n\n")

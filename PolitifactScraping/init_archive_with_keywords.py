@@ -27,8 +27,9 @@ sources = []
 targets = []
 keywords_list = []
 
-
-
+'''
+Funzione per estrarre il valore della label a partire dall'immagine
+'''
 def extract_rating(image_url):
     # Controlla se l'URL contiene "meter-xxx"
     match = re.search(r'meter-([a-z-]+)', image_url)
@@ -162,27 +163,30 @@ def scrape_website(page_number, keywords=None):
     print(len(keywords_list))
 
 '''
-# Loop through 'n-1' webpages to initialize the archive
-n = 2
-keywords = ["Rome"]  # Replace with actual keywords or leave empty ([]) for no keywords
+'''
+Funzione per salvare i risultati della ricerca effettuata nel file csv specificato
+'''
+def results_to_CSV(n, keywords, CSV_file):
+    # Loop through 'n-1' webpages to initialize the archive
+    for i in range(1, n):
+        scrape_website(i, keywords)
+
+    # Create a new dataFrame
+    data = pd.DataFrame(columns=['author', 'statement', 'source', 'date', 'target', 'keywords'])
+    data['author'] = authors
+    data['statement'] = statements
+    data['source'] = sources
+    data['date'] = dates
+    data['target'] = targets
+    data['keywords'] = keywords_list
+
+    # Save the data set
+    data.to_csv(CSV_file, index=False, sep=',')
+    print(f"\n Success: file {CSV_file} created and initialized!\n\n")
+
+# Definire le parole chiave, il file CSV e il numero di pagine per estrarre i dati più recenti
+n = 3
+keywords = ["Ukraine war"]  # Replace with actual keywords or leave empty ([]) for no keywords
 CSV_file = "archive_with_keywords.csv"
-# if keywords:
-#     CSV_file = "archive_with_keywords.csv"
-# else:
-#     CSV_file = "archive.csv"
-for i in range(1, n):
-    scrape_website(i, keywords)
 
-# Create a new dataFrame
-data = pd.DataFrame(columns=['author', 'statement', 'source', 'date', 'target', 'keywords'])
-data['author'] = authors
-data['statement'] = statements
-data['source'] = sources
-data['date'] = dates
-data['target'] = targets
-data['keywords'] = keywords_list
-
-
-# Save the data set
-data.to_csv(CSV_file, index=False, sep=',')
-print("\n Success: file archive.csv created and initialized!\n\n")
+results_to_CSV(n, keywords, CSV_file)
