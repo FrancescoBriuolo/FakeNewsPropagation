@@ -1,0 +1,196 @@
+Sources,Keywords,Total Weights
+Sean Hannity,Biden,1.0
+Sean Hannity,Trump,1.0
+Matt Maddock,Biden,1.0
+Alex Jones,Trump,1.0
+Alex Jones,Russia,1.0
+Tucker Carlson,Putin,1.0
+Tucker Carlson,Ukraine,1.0
+Pearson Sharp,Putin,1.0
+Pearson Sharp,Zelensky,1.0
+Tulsi Gabbard,Putin,1.0
+Russian Embassy in Canada,Putin,1.0
+One America News,Zelensky,1.0
+Citizens for Sanity,Russia,1.0
+Andy Biggs,Ukraine,1.0
+George Santos,Ukraine,1.0
+Bloggers,Putin,0.95
+Bloggers,Ukraine,0.95
+Bloggers,Russia,0.933
+Donald Trump,Putin,0.9
+X posts,Putin,0.9
+X posts,Russia,0.9
+Tucker Carlson,Russia,0.9
+Tweets,Zelensky,0.9
+Tweets,Russia,0.9
+Tweets,Ukraine,0.9
+Donald Trump,Zelensky,0.886
+Viral image,Biden,0.875
+Instagram posts,Zelensky,0.867
+Viral image,Trump,0.867
+X posts,Biden,0.867
+Robert F. Kennedy Jr.,Trump,0.867
+Donald Trump,Biden,0.86
+Threads posts,Trump,0.857
+Facebook posts,Biden,0.854
+Viral image,Russia,0.85
+X posts,Ukraine,0.85
+Tweets,Putin,0.85
+Facebook posts,Ukraine,0.845
+Instagram posts,Putin,0.844
+Donald Trump,Ukraine,0.84
+TikTok posts,Ukraine,0.84
+Facebook posts,Zelensky,0.835
+Viral image,Ukraine,0.833
+Instagram posts,Biden,0.831
+Viral image,Putin,0.831
+Facebook posts,Russia,0.831
+Facebook posts,Putin,0.828
+Facebook posts,Trump,0.824
+Instagram posts,Russia,0.82
+Instagram posts,Trump,0.817
+Instagram posts,Ukraine,0.809
+Social Media,Biden,0.8
+Social Media,Trump,0.8
+Social Media,Putin,0.8
+Social Media,Russia,0.8
+Social Media,Ukraine,0.8
+Joe Biden,Ukraine,0.8
+Viral image,Zelensky,0.8
+Donald Trump,Trump,0.8
+Donald Trump,Russia,0.8
+X posts,Trump,0.8
+Mike Johnson,Biden,0.8
+Mike Johnson,Trump,0.8
+Mike Johnson,Ukraine,0.8
+Threads posts,Biden,0.8
+Threads posts,Russia,0.8
+Threads posts,Ukraine,0.8
+Ron Johnson,Biden,0.8
+Ron Johnson,Trump,0.8
+Benny Johnson,Biden,0.8
+Benny Johnson,Trump,0.8
+Benny Johnson,Ukraine,0.8
+Rick Scott,Biden,0.8
+Ron DeSantis,Biden,0.8
+Kelly Daughtry,Biden,0.8
+Kelly Daughtry,Trump,0.8
+Robert F. Kennedy Jr.,Biden,0.8
+TikTok posts,Biden,0.8
+TikTok posts,Trump,0.8
+TikTok posts,Putin,0.8
+TikTok posts,Russia,0.8
+Derrick Van Orden,Biden,0.8
+Derrick Van Orden,Trump,0.8
+Kristi Noem,Biden,0.8
+Kristi Noem,Trump,0.8
+J.D. Vance,Zelensky,0.8
+J.D. Vance,Russia,0.8
+J.D. Vance,Ukraine,0.8
+Andrew Tate,Biden,0.8
+Brian Kilmeade,Biden,0.8
+Katie Britt,Biden,0.8
+Franklin Graham,Biden,0.8
+Franklin Graham,Trump,0.8
+Jesse Watters,Trump,0.8
+Bloggers,Zelensky,0.8
+Vladimir Putin,Putin,0.8
+Sergey Lavrov,Putin,0.8
+Marjorie Taylor Greene,Zelensky,0.8
+Marjorie Taylor Greene,Russia,0.8
+Marjorie Taylor Greene,Ukraine,0.8
+Michael Savage,Zelensky,0.8
+YouTube videos,Zelensky,0.8
+George Papadopoulos,Zelensky,0.8
+Jeanne Ives,Zelensky,0.8
+Rand Paul,Zelensky,0.8
+Adam Schiff,Zelensky,0.8
+Nikki Haley,Ukraine,0.8
+Michael McCaul,Ukraine,0.8
+Peggy Hubbard,Ukraine,0.8
+MAGA Inc,Biden,0.7
+MAGA Inc,Trump,0.7
+Tom Tiffany,Russia,0.6
+Ron Johnson,Russia,0.6
+MAGA Inc,Putin,0.6
+MAGA Inc,Russia,0.6
+Kamala Harris,Ukraine,0.6
+Nancy Pelosi,Putin,0.6
+Greg Steube,Biden,0.6
+Marco Rubio,Biden,0.6
+Nancy Mace,Biden,0.6
+J.D. Vance,Biden,0.6
+J.D. Vance,Trump,0.6
+Ronna McDaniel,Biden,0.6
+Ronna McDaniel,Trump,0.6
+Eric Hovde,Russia,0.6
+Pete Buttigieg,Biden,0.6
+Pete Buttigieg,Trump,0.6
+Mike Pence,Ukraine,0.6
+Whoopi Goldberg,Putin,0.6
+Richard Hudson,Putin,0.6
+Richard Hudson,Russia,0.6
+Richard Hudson,Ukraine,0.6
+Pat McCrory,Putin,0.6
+VoteVets,Putin,0.6
+VoteVets,Zelensky,0.6
+Evan McMullin,Putin,0.6
+Evan McMullin,Zelensky,0.6
+Jim Sensenbrenner,Zelensky,0.6
+Matt Gaetz,Zelensky,0.6
+Mark Levin,Zelensky,0.6
+Charlie Kirk,Zelensky,0.6
+Robin Vos,Russia,0.6
+Robin Vos,Ukraine,0.6
+Chris Christie,Russia,0.6
+Ted Cruz,Russia,0.6
+Ted Cruz,Ukraine,0.6
+Joe Biden,Putin,0.55
+Joe Biden,Russia,0.5
+Joe Biden,Biden,0.477
+Joe Biden,Trump,0.4
+Tom Tiffany,Biden,0.4
+Tom Tiffany,Trump,0.4
+Jared Polis,Biden,0.4
+Jared Polis,Trump,0.4
+Kamala Harris,Biden,0.4
+Nancy Pelosi,Biden,0.4
+Nancy Pelosi,Trump,0.4
+Ron DeSantis,Russia,0.4
+Ron DeSantis,Ukraine,0.4
+J.D. Vance,Putin,0.4
+Jeanette Nuñez,Biden,0.4
+Eric Hovde,Biden,0.4
+Eric Hovde,Trump,0.4
+Gavin Newsom,Putin,0.4
+Mike Pence,Putin,0.4
+Joe Manchin,Putin,0.4
+Joni Ernst,Putin,0.4
+John Cornyn,Putin,0.4
+Vivek Ramaswamy,Russia,0.4
+Vivek Ramaswamy,Ukraine,0.4
+Chris Christie,Ukraine,0.4
+Chris Rose,Russia,0.4
+Chris Rose,Ukraine,0.4
+Carol Miller,Ukraine,0.4
+Kevin McCarthy,Ukraine,0.4
+Bill Cassidy,Ukraine,0.4
+Brian Schimming,Biden,0.3
+Tammy Baldwin,Biden,0.2
+Tammy Baldwin,Trump,0.2
+Kamala Harris,Trump,0.2
+Simon Rosenberg,Biden,0.2
+Simon Rosenberg,Trump,0.2
+Val Demings,Zelensky,0.2
+Jim Himes,Zelensky,0.2
+Bryan Steil,Russia,0.2
+Nikki Haley,Russia,0.2
+West Virginia Republican Party,Ukraine,0.2
+Brian Schimming,Trump,0.0
+Sarah Godlewski,Biden,0.0
+Sarah Godlewski,Trump,0.0
+Morgan Luttrell,Putin,0.0
+Morgan Luttrell,Russia,0.0
+Morgan Luttrell,Ukraine,0.0
+Marianne Williamson,Russia,0.0
+Mark Pocan,Ukraine,0.0
