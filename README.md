@@ -16,4 +16,7 @@ The "update_archives.py" script enables to update the previously created files. 
 the search was performed. If a keyword is not entered (""), the 'archive.csv' file is updated with the most recent statements for the first n pages specified. 
 It is necessary to specify that for the purposes of this thesis project only searches using keywords were conducted, although the other option is useful for possible future development.
 The CSV file 'archive_with_keywords.csv' consists of 6 fields: author (the fact-checker), statement (news content), source (source of the news - person, social post, organization), date (of the review), target (label assigned by the fact-checker: True, Mostly True, Half True, Mostly False, False, Pants on Fire), keyword (with which the search is executed).
+The third script ‘result_production.py’ takes as input the csv file produced earlier and produces another CSV file containing the triples Source, Keywords, Total Weight, in descending order by total weight and whose name is linked to the date and time it is executed, in the format ‘Result_YYY_mm_DD_hh_MM_ss’.
+The Matlab script "main.m" uses the newly produced csv file to create the bipartite graph of sources and keywords, their projections and to perform a series of node and network measurements.
 
+## 
