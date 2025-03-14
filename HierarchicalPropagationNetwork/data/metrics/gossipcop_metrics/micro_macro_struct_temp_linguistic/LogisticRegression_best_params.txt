@@ -1,0 +1,1 @@
+Best params for LogisticRegression: {'C': 100, 'class_weight': None, 'max_iter': 500}

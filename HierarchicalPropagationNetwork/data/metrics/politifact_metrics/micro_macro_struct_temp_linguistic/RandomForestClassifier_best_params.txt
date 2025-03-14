@@ -1,0 +1,1 @@
+Best params for RandomForestClassifier: {'criterion': 'entropy', 'max_depth': 20, 'max_features': 'sqrt', 'n_estimators': 50}

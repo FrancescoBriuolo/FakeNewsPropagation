@@ -1,0 +1,1 @@
+Best params for SVM -linear kernel: {'C': 1, 'kernel': 'linear', 'max_iter': 2000}

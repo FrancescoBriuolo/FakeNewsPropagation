@@ -1,0 +1,7 @@
+Classifier,Accuracy ,Precision ,Recall ,F1 
+DecisionTreeClassifier,0.84,0.843,0.837,0.84
+GaussianNB,0.655,0.858,0.37,0.518
+LogisticRegression,0.843,0.882,0.791,0.834
+FNN,0.874,0.861,0.891,0.875
+RandomForestClassifier,0.879,0.866,0.898,0.881
+SVM -linear kernel,0.854,0.877,0.824,0.85
